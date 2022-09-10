@@ -13,12 +13,12 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value = "/empresa")
 
-public class ControllerEmpresa {
+public class ControllerEmpresa{
 
         @Autowired
         ServiceEmpresa serviceEmpresa;
 
-
+        /*
         @GetMapping (path = "/udea/mintic/program", produces = "application/json")
         public ResponseEntity <String> callServicePrograma(){
 
@@ -45,15 +45,18 @@ public class ControllerEmpresa {
 
             return salida;
 
-        }
+        }*/
 
         @GetMapping (path = "/udea/mintic/listaEmpresas", produces = MediaType.APPLICATION_JSON_VALUE)
         public ArrayList<Empresa> listaEmpresas (){
+            System.out.println("Ingreso al metodo listaPersonas");
+
             return serviceEmpresa.listar();
+
         }
 
         @PostMapping(path = "/udea/mintic/inscribirEmpresa", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-        public  ResponseEntity <Empresa> inscribirEmpresa(@RequestBody Empresa empresa){
+        public  ResponseEntity <Empresa> inscribirEmpresa (@RequestBody Empresa empresa){
 
             boolean salida = serviceEmpresa.addEmpresa(empresa);
 
@@ -64,7 +67,7 @@ public class ControllerEmpresa {
 
             }else {
 
-                return new ResponseEntity("Error de Ejecuión ", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity("Error de Ejecución ", HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
 
@@ -100,15 +103,15 @@ public class ControllerEmpresa {
             }
             return new ResponseEntity<Empresa>(empresa, HttpStatus.OK);
         }
-      @PutMapping ( path = "/udea/mintic/actualizarPersona", produces = MediaType.APPLICATION_JSON_VALUE)
-      public ResponseEntity <Empresa> actualizarPersona(@RequestParam int id, @RequestParam String nombreModificado){
+      @PutMapping ( path = "/udea/mintic/actualizarEmpresa", produces = MediaType.APPLICATION_JSON_VALUE)
+      public ResponseEntity <Empresa> actualizarEmpresa(@RequestParam int id, @RequestParam String nombreModificado){
           Empresa e = serviceEmpresa.buscarEmpresa(id);
           e.setNombre(nombreModificado);
           System.out.println("Metod PUT");
           return new ResponseEntity<Empresa>(e, HttpStatus.OK);
       }
 
-    @DeleteMapping (path = "/udea/mintic/borrarPersona/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping (path = "/udea/mintic/borrarEmpresa/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity <Boolean> borrarEmpresa (@PathVariable int id){
         Empresa e = serviceEmpresa.buscarEmpresa(id);
         Boolean salida = serviceEmpresa.borrarEmpresa(e);

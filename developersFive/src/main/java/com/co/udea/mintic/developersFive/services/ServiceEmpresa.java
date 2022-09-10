@@ -16,14 +16,14 @@ public class ServiceEmpresa {
 
         @Getter
         @Setter
-        private String nombrePrograma;
+        //private String nombrePrograma;
 
         ArrayList<Empresa> listaE;
 
         public ServiceEmpresa(ArrayList<Empresa> listaE) {
             this.listaE = listaE;
         }
-
+        /*
         public String inscribirEmpresa(Empresa empresa){
 
             String inscripcion = "la empresa " + empresa.getNombre() + " " + " Con numero Nit: " + empresa.getNit() + "  Quedo inscrito a la aplicacion "  ;
@@ -41,17 +41,17 @@ public class ServiceEmpresa {
             }while(a<10);
 
             return objTraza;
-        }
+        }*/
 
         public boolean addEmpresa(Empresa empresa){
 
 
             Empresa objEmpresa= new Empresa();
-            objEmpresa.setNombre(objEmpresa.getNombre());
-            objEmpresa.setTelefono(objEmpresa.getTelefono());
-            objEmpresa.setDireccion(objEmpresa.getDireccion());
-            objEmpresa.setNit(objEmpresa.getNit());
-            objEmpresa.setId(objEmpresa.getId());
+            objEmpresa.setNombre(empresa.getNombre());
+            objEmpresa.setTelefono(empresa.getTelefono());
+            objEmpresa.setDireccion(empresa.getDireccion());
+            objEmpresa.setNit(empresa.getNit());
+            objEmpresa.setId(empresa.getId());
 
             listaE.add(objEmpresa);
 
@@ -59,9 +59,9 @@ public class ServiceEmpresa {
 
         }
 
-        public ArrayList<Empresa> listar (){
+        public ArrayList<Empresa> listar(){
 
-            System.out.println("Metodo listar del service");
+            System.out.println("Metodo listar del service ");
 
             return listaE;
 

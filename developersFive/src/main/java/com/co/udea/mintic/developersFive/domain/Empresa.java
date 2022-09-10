@@ -1,12 +1,10 @@
 package com.co.udea.mintic.developersFive.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Data
-@Setter
-@Getter
+
 public class Empresa {
 
     private String nombre;
@@ -16,6 +14,9 @@ public class Empresa {
     private int id;
     //private ArrayLIst<Empresa> empresa;
     //private ArrayList<Transaccion>transaccion;
+
+
+
 
 
     public Empresa(String nombre, String telefono, String direccion, String nit, int id) {
@@ -30,5 +31,4 @@ public class Empresa {
     public Empresa() {
 
     }
-
 }
