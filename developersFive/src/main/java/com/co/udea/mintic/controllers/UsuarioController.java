@@ -26,26 +26,26 @@ public class UsuarioController {
 	
 	@GetMapping
 	public ArrayList<UsuarioModel> obtenerUsuarios(){
-		return usuarioServicice.obtenerUsuarios();
+		return usuarioService.obtenerUsuarios();
 		
 		
 	}
 	
 	@PostMapping	
 	public UsuarioModel guardarUsuario(@RequestBody UsuarioModel usuario) {
-		return this.usuarioServicice.guardarUsuario(usuario);
+		return this.usuarioService.guardarUsuario(usuario);
 	}
 	
 	
 	@GetMapping(path = "/{id}")
 	public Optional<UsuarioModel> obtenerUsuarioPorId(@PathVariable("id") Long id){
-		return this.usuarioServicice.obtenerPorId(id);
+		return this.usuarioService.obtenerPorId(id);
 	}
 	
 	@GetMapping(path = "/query")
 	public ArrayList<UsuarioModel> obtenerPorPrioridad(@RequestParam("prioridad") Integer prioridad){
 		
-		return this.usuarioServicice.obtenerPorPrioridad(prioridad);
+		return this.usuarioService.obtenerPorPrioridad(prioridad);
 		
 		
 	}
@@ -53,10 +53,10 @@ public class UsuarioController {
 	
 	@DeleteMapping(path ="/{id}")
 	public String eliminaPorId(@PathVariable("id")Long id) {
-		boolean ok = this.usuarioServicice.eliminaUsuario(id);
+		boolean ok = this.usuarioService.eliminaUsuario(id);
 		
 		if(ok) {
-			return "Se eliminino el usuario con id" + id;
+			return "Se elimina el usuario con id" + id;
 		}else {
 			return "No pudo eliminar el usuario con id"+id;
 		}
