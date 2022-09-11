@@ -118,6 +118,15 @@ public class ControllerEmpresa{
         return new ResponseEntity<Boolean>(salida, HttpStatus.OK);
     }
 
+    @PatchMapping (path = "/udea/mintic/actualizarEP", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <String> actualizarEmpresaParcial (){
+
+        String retorno = "Actualizacion Parcial de dominio Empresa";
+        System.out.println("Ok, metodo patch");
+        return new ResponseEntity<String >(retorno, HttpStatus.OK);
+
+    }
+
 
 }
 
