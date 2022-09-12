@@ -1,9 +1,18 @@
 package com.co.udea.mintic.developersFive.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "movimientoDinero")
 public class MovimientoDinero {
 
     //Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @Column(name = "montoMovimiento")
     private double montoMovimiento;
+    @Column(name = "conceptoMovimiento")
     private String conceptoMovimiento;
 
     // Constructor
@@ -31,12 +40,8 @@ public class MovimientoDinero {
         this.conceptoMovimiento = conceptoMovimiento;
     }
 
-    // Métodos
-    public double montos() {
-        return -1;
-    }
 
-    public String usuarioEncargado() {
-        return "-1";
+    public MovimientoDinero() {
+
     }
 }
