@@ -23,7 +23,7 @@ public class ServiciosUsuario {
     public boolean addUsuario(Usuario usuario){
 
 
-        Empresa objUsuario= new Usuario();
+        Usuario objUsuario= new Usuario();
         objUsuario.setNombre(usuario.getNombre());
         objUsuario.setNit(usuario.getApellido());
         objUsuario.setTelefono(usuario.getTelefono());
