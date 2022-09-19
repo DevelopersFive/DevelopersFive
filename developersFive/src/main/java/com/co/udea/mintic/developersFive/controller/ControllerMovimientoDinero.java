@@ -15,10 +15,6 @@ public class ControllerMovimientoDinero {
     @Autowired
     ServiceMovimientoDinero sermovd1;
 
-    public ControllerMovimientoDinero(ServiceMovimientoDinero sermovd1) {
-        this.sermovd1 = sermovd1;
-    }
-
     @GetMapping("/movements")
     public List<MovimientoDinero> informacion() {
         return this.sermovd1.getInformacion();
