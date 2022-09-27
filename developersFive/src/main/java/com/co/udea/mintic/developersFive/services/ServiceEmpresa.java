@@ -119,6 +119,8 @@ public class ServiceEmpresa {
     }
 
 
+
+
     public Boolean actualizarTodoJPA (EntityEmpresa empresa){
 
         try {
@@ -157,25 +159,12 @@ public class ServiceEmpresa {
 
     }
 
-    public void deleteEmpresaById (Long id){
+    public void borrarEmpresaJPA (Long id){
 
         repositoryEmpresa.deleteById(id);
     }
 
-    /*public Boolean insertarEmpresaNit(EntityEmpresa empresa){
 
-
-        if (empresa.getNit()){
-            repositoryEmpresa.save(empresa);
-            EntityPermisos ePerTmp = new EntityPermisos( true, true,true, true, empresa );
-            repositoryPermisos.save(ePerTmp);
-
-        }else {
-            System.err.println("No se pudo obtener e Rol");
-            return  Boolean.FALSE;
-        }
-        return  Boolean.TRUE;
-    }*/
 
     public EntityEmpresa buscarEmpresaId (Long id){
 

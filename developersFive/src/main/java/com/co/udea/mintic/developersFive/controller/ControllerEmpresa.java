@@ -119,16 +119,13 @@ public class ControllerEmpresa{
 
     }
 
-    @PutMapping (path = "/udea/mintic/actualizarTodoJPA")
-    public RedirectView actualizarTodoJPA (@ModelAttribute EntityEmpresa empresa, Model modelo){
+    @PutMapping (path = "/udea/mintic/actualizarTodoJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> actualizarTodoJPA (@RequestBody EntityEmpresa empresa){
 
-        modelo.addAttribute(empresa);
-        if (serviceEmpresa.actualizarTodoJPA(empresa).equals(Boolean.TRUE)){
-            return new RedirectView("/pagina2");
-        }else{
+        return new ResponseEntity<Boolean> (serviceEmpresa.actualizarTodoJPA(empresa), HttpStatus.OK);
 
-            return new RedirectView("/error");
-        }
+
+
 
     }
 
@@ -139,22 +136,13 @@ public class ControllerEmpresa{
     }
 
     @DeleteMapping("/udea/mintic/borrarEmpresaJPA/{id}")
-    public RedirectView borrarEmpresaJPA(@PathVariable("id") Long id) {
-        serviceEmpresa.deleteEmpresaById(id);
-        return new RedirectView("/pagina2");
+    public void borrarEmpresaJPA(@PathVariable Long id) {
+        serviceEmpresa.borrarEmpresaJPA(id);
+
+
     }
 
-   /* @PostMapping (path = "/udea/mintic/insertarEmpresaNit")
-    public RedirectView insertarEmpresaNit (@ModelAttribute EntityEmpresa empresa, Model modelo){
-        modelo.addAttribute(empresa);
-        if (serviceEmpresa.insertarEmpresaNit (empresa).equals(Boolean.TRUE)){
-            return new RedirectView("/pagina2");
-        }else{
 
-            return new RedirectView("/error");
-        }
-
-    }*/
 
 
 
