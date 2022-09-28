@@ -15,8 +15,7 @@ public class Empresa {
     private String direccion;
     private String nit;
     private Long id;
-    //private ArrayLIst<Empresa> empresa;
-    //private ArrayList<Transaccion>transaccion;
+
 
 
 
