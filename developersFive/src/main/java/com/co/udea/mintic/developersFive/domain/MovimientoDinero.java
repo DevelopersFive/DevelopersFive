@@ -1,9 +1,11 @@
 package com.co.udea.mintic.developersFive.domain;
 
+import lombok.Data;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "movimientoDinero")
+@Data
 public class MovimientoDinero {
 
     //Atributos
@@ -17,31 +19,20 @@ public class MovimientoDinero {
 
     // Constructor
 
+    public MovimientoDinero() {
+    }
+
     public MovimientoDinero(double montoMovimiento, String conceptoMovimiento) {
         this.montoMovimiento = montoMovimiento;
         this.conceptoMovimiento = conceptoMovimiento;
     }
 
-    // Getters and Setters
-
-    public double getMontoMovimiento() {
-        return montoMovimiento;
+    public double crearMonto() {
+        return -1;
     }
 
-    public void setMontoMovimiento(double montoMovimiento) {
-        this.montoMovimiento = montoMovimiento;
+    public String usuarioEncargadoRegistroMovimiento() {
+        return "-1";
     }
 
-    public String getConceptoMovimiento() {
-        return conceptoMovimiento;
-    }
-
-    public void setConceptoMovimiento(String conceptoMovimiento) {
-        this.conceptoMovimiento = conceptoMovimiento;
-    }
-
-
-    public MovimientoDinero() {
-
-    }
 }
