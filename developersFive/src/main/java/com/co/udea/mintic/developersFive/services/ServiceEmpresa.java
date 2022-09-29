@@ -28,11 +28,12 @@ public class ServiceEmpresa {
 
         @Autowired
         RepositoryPermisos repositoryPermisos;
-        ArrayList <Empresa> listaP;
+        //ArrayList <Empresa> listaP;
 
         ArrayList<Empresa> listaE;
 
         public ServiceEmpresa(ArrayList<Empresa> listaE) {
+
             this.listaE = listaE;
         }
 
@@ -159,10 +160,16 @@ public class ServiceEmpresa {
 
     }
 
-    public void borrarEmpresaJPA (Long id){
-
+    public void deleteEmpresaById (Long id){
         repositoryEmpresa.deleteById(id);
     }
+    public Boolean insertarEmpresa(EntityEmpresa empresa) {
+        repositoryEmpresa.save(empresa);
+
+        return Boolean.TRUE;
+    }
+
+
 
 
 
