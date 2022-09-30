@@ -1,51 +1,31 @@
 package com.co.udea.mintic.developersFive.controller;
 
 import com.co.udea.mintic.developersFive.domain.Empresa;
+import com.co.udea.mintic.developersFive.repository.EntityEmpresa;
 import com.co.udea.mintic.developersFive.services.ServiceEmpresa;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 
+@Api(tags = "Empresa", description = "Metodos para el Api Empresa")
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/empresa")
 
 public class ControllerEmpresa{
 
         @Autowired
         ServiceEmpresa serviceEmpresa;
+        @ApiOperation( value = "Endpoint para listar Empresa")
 
-        /*
-        @GetMapping (path = "/udea/mintic/program", produces = "application/json")
-        public ResponseEntity <String> callServicePrograma(){
-
-            Empresa empresa = new Empresa();
-
-            empresa.setNombre("DevelopersFive");
-            empresa.setTelefono("3003000000");
-            empresa.setDireccion("cll 11 11 11");
-            empresa.setNit("80000000 0");
-            empresa.setId(1);
-
-            String salida = serviceEmpresa.inscribirEmpresa(empresa);
-
-            return new ResponseEntity<String>(salida, HttpStatus.NOT_FOUND);
-
-        }
-
-
-        @GetMapping (path = "/udea/mintic/doWhile", produces = "application/json")
-        public ArrayList doWhileController(){
-
-            ArrayList<String> salida = new ArrayList<>();
-            salida = serviceEmpresa.doWhile(7);
-
-            return salida;
-
-        }*/
 
         @GetMapping (path = "/udea/mintic/listaEmpresas", produces = MediaType.APPLICATION_JSON_VALUE)
         public ArrayList<Empresa> listaEmpresas (){
@@ -127,7 +107,68 @@ public class ControllerEmpresa{
 
     }
 
+    //JPA
+
+    @GetMapping (path = "/udea/mintic/listarTodosJPA", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <Object> listarTodo (){
+
+        return  new ResponseEntity<Object>(serviceEmpresa.listarTodosJPA(), HttpStatus.OK);
+
+    }
+
+    @PostMapping (path = "/udea/mintic/insertarEmpresaJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <Boolean> insertarEmpresa (@RequestBody EntityEmpresa empresa){
+
+        return new ResponseEntity<Boolean>(serviceEmpresa.insertarEmpresaJPA(empresa), HttpStatus.OK)  ;
+
+    }
+
+    @PutMapping (path = "/udea/mintic/actualizarTodoJPA")
+    public RedirectView actualizarTodoJPA (@ModelAttribute EntityEmpresa empresa, Model modelo){
+
+        modelo.addAttribute(empresa);
+        if (serviceEmpresa.actualizarTodoJPA(empresa).equals(Boolean.TRUE)){
+            return new RedirectView("/pagina2");
+        }else{
+
+            return new RedirectView("/error");
+        }
+
+
+
+
+    }
+
+    @PatchMapping (path = "/udea/mintic/actualizarParcialJPA", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void insertarParcialJPA (@RequestBody EntityEmpresa empresa){
+
+        serviceEmpresa.actualizarParcialJPA(empresa);
+    }
+
+    @DeleteMapping("/udea/mintic/borrarEmpresaJPA/{id}")
+    public RedirectView borrarEmpresaJPA(@PathVariable("id") Long id) {
+        serviceEmpresa.deleteEmpresaById(id);
+        return new RedirectView("/pagina2");
+    }
+    @PostMapping (path = "/udea/mintic/insertarEmpresa")
+    public RedirectView insertarEmpresa (@ModelAttribute EntityEmpresa empresa, Model modelo){
+        modelo.addAttribute(empresa);
+        if (serviceEmpresa.insertarEmpresa (empresa).equals(Boolean.TRUE)){
+            return new RedirectView("/pagina2");
+        }else{
+
+            return new RedirectView("/error");
+        }
+
+    }
+
+
+
+
 
 }
+
+
+
 
 

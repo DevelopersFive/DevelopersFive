@@ -2,27 +2,35 @@ package com.co.udea.mintic.developersFive.controller;
 
 import com.co.udea.mintic.developersFive.domain.MovimientoDinero;
 import com.co.udea.mintic.developersFive.services.ServiceMovimientoDinero;
+import com.co.udea.mintic.developersFive.services.ServiceUsuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @RestController
 public class ControllerMovimientoDinero {
 
+    @Autowired
     ServiceMovimientoDinero sermovd1;
-
-    public ControllerMovimientoDinero(ServiceMovimientoDinero sermovd1) {
-        this.sermovd1 = sermovd1;
-    }
 
     @GetMapping("/movements")
     public List<MovimientoDinero> informacion() {
         return this.sermovd1.getInformacion();
     }
 
+//    @PostMapping("/movements")
+//    public MovimientoDinero crearEmpleado(@RequestBody MovimientoDinero movdin) {
+//        return this.sermovd1.crearMovimientoDinero(movdin);
+//    }
+
     @PostMapping("/movements")
-    public MovimientoDinero crearEmpleado(@RequestBody MovimientoDinero movdin) {
-        return this.sermovd1.crearMovimientoDinero(movdin);
+    public RedirectView crearEmpleado(@ModelAttribute MovimientoDinero movdin, Model model) {
+        model.addAttribute(movdin);
+        this.sermovd1.crearMovimientoDinero(movdin);
+        return new RedirectView("/user");
     }
 
     @PutMapping("/movements/{id}")
